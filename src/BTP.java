@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class BTP   {
 
-    Node root;
+    BinaryTreeNode root;
 
     /*
      * This method requires that there is a class Node
@@ -16,18 +16,18 @@ public class BTP   {
      * The tree must be created elsewhere (possible in a Main or Test class).
      */
 
-    public void printTree(Node root) {
-        ArrayList<Node> parent = new ArrayList<Node>();
+    public void printTree(BinaryTreeNode root) {
+        ArrayList<BinaryTreeNode> parent = new ArrayList<BinaryTreeNode>();
         parent.add(root);
         printT(parent, 64);
     }
 
-    private void printT(ArrayList<Node> parent, int left) {
-        ArrayList<Node> children = new ArrayList<Node>();
-        Node current;
+    private void printT(ArrayList<BinaryTreeNode> parent, int left) {
+        ArrayList<BinaryTreeNode> children = new ArrayList<BinaryTreeNode>();
+        BinaryTreeNode current;
         boolean moreNodes = false;
         boolean firstNode = true;
-        Node dummy = new Node(0);
+        BinaryTreeNode dummy = new BinaryTreeNode(0);
 
         int dist = 0;
         System.out.println();
