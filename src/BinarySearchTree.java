@@ -1,27 +1,27 @@
-public class BinarySearchTree extends BinaryTree{
-    BinarySearchTreeNode root;
+public class BinarySearchTree<T> extends BinaryTree<T>{
+    BinarySearchTreeNode<T> root;
 
 
-    public boolean insert(int value) {
-        BinaryTreeNode current = root;
+    public boolean insert(T value) {
+        BinarySearchTreeNode<T> current = root;
         if (root == null) {
-            root = new BinarySearchTreeNode(value);
+            root = new BinarySearchTreeNode<T>(value);
             return true;
         }
         while (true) {
-            if (value < current.getElement()) {
+            if (current.compareTo(value) == 1) {
                 if (current.left == null) {
-                    current.addLeftChild(new BinaryTreeNode(value));
+                    current.addLeftChild(new BinarySearchTreeNode<T>(value));
                     return true;
                 } else {
-                    current = current.left;
+                    current = (BinarySearchTreeNode<T>) current.getLeftChild();
                 }
-            } else if (value > current.getElement()) {
+            } else if (current.compareTo(value) == -1) {
                 if (current.right == null) {
-                    current.addRightChild(new BinaryTreeNode(value));
+                    current.addRightChild(new BinarySearchTreeNode<T>(value));
                     return true;
                 } else {
-                    current = current.right;
+                    current = (BinarySearchTreeNode<T>)current.getRightChild();
                 }
             } else {
                 return false;

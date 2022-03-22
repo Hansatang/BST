@@ -1,31 +1,31 @@
-public class BinaryTreeNode {
-    int value;
-    BinaryTreeNode left;
-    BinaryTreeNode right;
+public class BinaryTreeNode<T> {
+   T value;
+    BinaryTreeNode<T> left;
+    BinaryTreeNode<T> right;
 
-    BinaryTreeNode(int value) {
+    BinaryTreeNode(T value) {
         this.value = value;
         right = null;
         left = null;
     }
 
-    public int getElement() {
+    public T getElement() {
         return value;
     }
 
-    public BinaryTreeNode getLeftChild() {
+    public BinaryTreeNode<T> getLeftChild() {
         return left;
     }
 
-    public BinaryTreeNode getRightChild() {
+    public BinaryTreeNode<T> getRightChild() {
         return right;
     }
 
-    public void addLeftChild(BinaryTreeNode binaryTreeNode) {
+    public void addLeftChild(BinaryTreeNode<T> binaryTreeNode) {
        this.left= binaryTreeNode;
     }
 
-    public void addRightChild(BinaryTreeNode binaryTreeNode) {
+    public void addRightChild(BinaryTreeNode<T> binaryTreeNode) {
         this.right= binaryTreeNode;
     }
 }
