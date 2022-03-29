@@ -1,4 +1,4 @@
-public class BinarySearchTree<T> extends BinaryTree<T>{
+public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T>{
     BinarySearchTreeNode<T> root;
 
 

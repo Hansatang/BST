@@ -1,9 +1,8 @@
-public class BinarySearchTreeNode<T> extends BinaryTreeNode<T> implements Comparable<T> {
+public class BinarySearchTreeNode<T extends Comparable<T>> extends BinaryTreeNode<T> implements Comparable<T> {
 
     BinarySearchTreeNode(T value) {
         super(value);
     }
-
 
     public T getElement() {
         return value;
@@ -27,6 +26,6 @@ public class BinarySearchTreeNode<T> extends BinaryTreeNode<T> implements Compar
 
     @Override
     public int compareTo(T o) {
-       return  Integer.compare((Integer) this.value,(Integer) o);
+        return getElement().compareTo(o);
     }
 }
