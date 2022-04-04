@@ -36,18 +36,50 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 //
 //    }
 
-    ArrayList InOrder() {
-        ArrayList inOrderList = new ArrayList();
-        toArrayList(root, inOrderList);
+    @Override
+    public ArrayList<T> inOrder() {
+        ArrayList<T> inOrderList = new ArrayList();
+        toInOrder(root, inOrderList);
         return inOrderList;
     }
 
-    void toArrayList(BinarySearchTreeNode root, ArrayList<BinarySearchTreeNode> nodes) {
+
+    public void toInOrder(BinarySearchTreeNode<T> root, ArrayList<T> nodes) {
         if (root == null)
             return;
-        toArrayList((BinarySearchTreeNode) root.getLeftChild(), nodes);
-        nodes.add(root);
-        toArrayList((BinarySearchTreeNode) root.getRightChild(), nodes);
+        toInOrder((BinarySearchTreeNode<T>) root.getLeftChild(), nodes);
+        nodes.add(root.getElement());
+        toInOrder((BinarySearchTreeNode<T>) root.getRightChild(), nodes);
+    }
+
+    @Override
+    public ArrayList<T> preOrder() {
+        ArrayList<T> inOrderList = new ArrayList();
+        toPreOrder(root, inOrderList);
+        return inOrderList;
+    }
+
+    public void toPreOrder(BinarySearchTreeNode<T> root, ArrayList<T> nodes) {
+        if (root == null)
+            return;
+        nodes.add(root.getElement());
+        toPreOrder(root.getLeftChild(), nodes);
+        toPreOrder(root.getRightChild(), nodes);
+    }
+
+    @Override
+    public ArrayList<T> postOrder() {
+        ArrayList<T> inOrderList = new ArrayList();
+        toPostOrder(root, inOrderList);
+        return inOrderList;
+    }
+
+    public void toPostOrder(BinarySearchTreeNode<T> root, ArrayList<T> nodes) {
+        if (root == null)
+            return;
+        toPostOrder(root.getLeftChild(), nodes);
+        toPostOrder(root.getRightChild(), nodes);
+        nodes.add(root.getElement());
     }
 
 
@@ -56,7 +88,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
     }
 
     private BinarySearchTreeNode<T> delete(BinarySearchTreeNode<T> checkedNode, T data) {
-        System.out.println("CheckedNode "+checkedNode.getElement());
+        System.out.println("CheckedNode " + checkedNode.getElement());
         if (checkedNode == null) {
             return checkedNode;
         } else if (checkedNode.getElement().compareTo(data) > 0) {
@@ -77,21 +109,21 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
 
     public T findMin(BinarySearchTreeNode<T> node) {
-        T min =  node.getElement();
+        T min = node.getElement();
 
 
         while (node.getLeftChild() != null) {
-            min =  node.getLeftChild().getElement();
+            min = node.getLeftChild().getElement();
             node = (BinarySearchTreeNode<T>) node.getLeftChild();
         }
         return min;
     }
 
     public T findMax(BinarySearchTreeNode<T> node) {
-        T max =  node.getElement();
+        T max = node.getElement();
 
         while (node.getRightChild() != null) {
-            max =  node.getRightChild().getElement();
+            max = node.getRightChild().getElement();
             node = (BinarySearchTreeNode<T>) node.getRightChild();
         }
         return max;
