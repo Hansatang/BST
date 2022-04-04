@@ -4,33 +4,64 @@ public class BinaryTree<T> {
     BinaryTreeNode root;
 
 
-    BinaryTreeNode getRoot() {
+
+    public BinaryTreeNode getRoot() {
         return root;
     }
 
-    void setRoot(BinaryTreeNode node) {
+    public void setRoot(BinaryTreeNode node) {
         this.root = node;
     }
 
-    boolean isEmpty(){
+    public boolean isEmpty() {
         return root == null ? true : false;
     }
 
-    ArrayList<T> inOrder(){
+    public ArrayList<T> inOrder() {
         ArrayList<T> inOrderList = new ArrayList();
         toInOrder(root, inOrderList);
         return inOrderList;
     }
 
-    void toInOrder(BinaryTreeNode root, ArrayList<T> nodes) {
+    public void toInOrder(BinaryTreeNode<T> root, ArrayList<T> nodes) {
         if (root == null)
             return;
-        toInOrder((BinaryTreeNode) root.getLeftChild(), nodes);
+        toInOrder(root.getLeftChild(), nodes);
         nodes.add((T) root.value);
-        toInOrder((BinaryTreeNode) root.getRightChild(), nodes);
+        toInOrder(root.getRightChild(), nodes);
     }
 
-    int size(){
+    public ArrayList<T> preOrder() {
+        ArrayList<T> inOrderList = new ArrayList();
+        toPreOrder(root, inOrderList);
+        return inOrderList;
+    }
+
+    public void toPreOrder(BinaryTreeNode root, ArrayList<T> nodes) {
+        if (root == null)
+            return;
+        nodes.add((T) root.value);
+        toPreOrder((BinaryTreeNode) root.getLeftChild(), nodes);
+        toPreOrder((BinaryTreeNode) root.getRightChild(), nodes);
+    }
+
+    public ArrayList<T> postOrder() {
+        ArrayList<T> inOrderList = new ArrayList();
+        toPostOrder(root, inOrderList);
+        return inOrderList;
+    }
+
+    public void toPostOrder(BinaryTreeNode root, ArrayList<T> nodes) {
+        if (root == null)
+            return;
+        toPostOrder((BinaryTreeNode) root.getLeftChild(), nodes);
+        toPostOrder((BinaryTreeNode) root.getRightChild(), nodes);
+        nodes.add((T) root.value);
+    }
+
+
+
+    public int size() {
         return inOrder().size();
     }
 

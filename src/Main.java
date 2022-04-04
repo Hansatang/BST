@@ -28,7 +28,7 @@ public class Main {
         binaryTree2.findMin(binaryTree2.root);
 
         System.out.println();
-        ArrayList<BinarySearchTreeNode> list = binaryTree2.InOrder();
+        ArrayList<BinarySearchTreeNode> list = binaryTree2.inOrder();
         for (BinarySearchTreeNode BSTN : list) {
             System.out.print(BSTN.value + " ");
         }
@@ -36,5 +36,26 @@ public class Main {
         System.out.println("Min "+binaryTree2.findMin(binaryTree2.root));
         System.out.println("Max "+binaryTree2.findMax(binaryTree2.root));
 
+        BinarySearchTree binaryTree = new BinarySearchTree();
+        binaryTree.insert(4);
+        binaryTree.insert(5);
+        binaryTree.insert(2);
+        binaryTree.insert(3);
+        binaryTree.insert(1);
+        System.out.println();
+        binaryTreePrint.printTree(binaryTree.root);
+        System.out.println();
+        ArrayList<BinarySearchTreeNode> list2 = binaryTree.preOrder();
+        for (BinarySearchTreeNode BSTN : list2) {
+            System.out.print(BSTN.value + " ");
+        }
+        ArrayList<BinarySearchTreeNode> list3 = binaryTree.inOrder();
+        for (BinarySearchTreeNode BSTN : list3) {
+            System.out.print(BSTN.value + " ");
+        }
+        ArrayList<BinarySearchTreeNode> list4 = binaryTree.postOrder();
+        for (BinarySearchTreeNode BSTN : list4) {
+            System.out.print(BSTN.value + " ");
+        }
     }
 }
