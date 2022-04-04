@@ -32,10 +32,6 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
     }
 
-//    public boolean contains(int value) {
-//
-//    }
-
     @Override
     public ArrayList<T> inOrder() {
         ArrayList<T> inOrderList = new ArrayList();
@@ -84,11 +80,10 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
 
     public boolean delete(T data) {
-        return delete(root, data) != null ? true : false;
+        return delete(root, data) != null;
     }
 
     private BinarySearchTreeNode<T> delete(BinarySearchTreeNode<T> checkedNode, T data) {
-        System.out.println("CheckedNode " + checkedNode.getElement());
         if (checkedNode == null) {
             return checkedNode;
         } else if (checkedNode.getElement().compareTo(data) > 0) {
@@ -129,5 +124,44 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
         return max;
     }
 
+    @Override
+    public boolean contains(T value) {
+        return search(root, value);
+    }
+
+    private boolean search(BinarySearchTreeNode<T> currentRoot, T searchedValue) {
+        if (currentRoot == null)
+            return false;
+        switch (currentRoot.getElement().compareTo(searchedValue)) {
+            case 1:
+                return search((BinarySearchTreeNode<T>) currentRoot.getLeftChild(), searchedValue);
+            case 0:
+                return true;
+            case -1:
+                return search((BinarySearchTreeNode<T>) currentRoot.getRightChild(), searchedValue);
+        }
+        return false;
+    }
+
+    @Override
+    public int height(){
+        return getHeight(root);
+    }
+
+
+    public int getHeight(BinaryTreeNode<T> root)
+    {
+        if (root == null)
+            return 0;
+        else {
+            int lheight = getHeight(root.left);
+            int rheight = getHeight(root.right);
+
+            if (lheight > rheight)
+                return (lheight + 1);
+            else
+                return (rheight + 1);
+        }
+    }
 
 }

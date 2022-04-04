@@ -1,20 +1,19 @@
 import java.util.ArrayList;
 
 public class BinaryTree<T> {
-    BinaryTreeNode root;
+    BinaryTreeNode<T> root;
 
 
-
-    public BinaryTreeNode getRoot() {
+    public BinaryTreeNode<T> getRoot() {
         return root;
     }
 
-    public void setRoot(BinaryTreeNode node) {
+    public void setRoot(BinaryTreeNode<T> node) {
         this.root = node;
     }
 
     public boolean isEmpty() {
-        return root == null ? true : false;
+        return root == null;
     }
 
     public ArrayList<T> inOrder() {
@@ -37,12 +36,12 @@ public class BinaryTree<T> {
         return inOrderList;
     }
 
-    public void toPreOrder(BinaryTreeNode root, ArrayList<T> nodes) {
+    public void toPreOrder(BinaryTreeNode<T> root, ArrayList<T> nodes) {
         if (root == null)
             return;
-        nodes.add((T) root.value);
-        toPreOrder((BinaryTreeNode) root.getLeftChild(), nodes);
-        toPreOrder((BinaryTreeNode) root.getRightChild(), nodes);
+        nodes.add(root.getElement());
+        toPreOrder(root.getLeftChild(), nodes);
+        toPreOrder(root.getRightChild(), nodes);
     }
 
     public ArrayList<T> postOrder() {
@@ -51,14 +50,13 @@ public class BinaryTree<T> {
         return inOrderList;
     }
 
-    public void toPostOrder(BinaryTreeNode root, ArrayList<T> nodes) {
+    public void toPostOrder(BinaryTreeNode<T> root, ArrayList<T> nodes) {
         if (root == null)
             return;
-        toPostOrder((BinaryTreeNode) root.getLeftChild(), nodes);
-        toPostOrder((BinaryTreeNode) root.getRightChild(), nodes);
-        nodes.add((T) root.value);
+        toPostOrder(root.getLeftChild(), nodes);
+        toPostOrder(root.getRightChild(), nodes);
+        nodes.add(root.getElement());
     }
-
 
 
     public int size() {
@@ -73,25 +71,44 @@ public class BinaryTree<T> {
 //    }
 
 
-    public boolean contains(T value){
+    public boolean contains(T value) {
         return search((BinarySearchTreeNode) root, value);
     }
 
-    private boolean search(BinarySearchTreeNode currentRoot, T searchedValue){
+    private boolean search(BinarySearchTreeNode currentRoot, T searchedValue) {
         if (root == null)
             return false;
 
-        switch (currentRoot.getElement().compareTo(searchedValue)){
-            case -1:
+        switch (currentRoot.getElement().compareTo(searchedValue)) {
+            case 1:
                 return search((BinarySearchTreeNode) root.getLeftChild(), searchedValue);
             case 0:
-                    return true;
-            case 1:
+                return true;
+            case -1:
                 return search((BinarySearchTreeNode) root.getRightChild(), searchedValue);
         }
         return false;
     }
 
+    public int height() {
+        return getHeight(root);
+    }
+
+    public int getHeight(BinaryTreeNode<T> root) {
+        if (root == null)
+            return 0;
+        else {
+            /* compute  height of each subtree */
+            int lheight = getHeight(root.left);
+            int rheight = getHeight(root.right);
+
+            /* use the larger one */
+            if (lheight > rheight)
+                return (lheight + 1);
+            else
+                return (rheight + 1);
+        }
+    }
 
 
 }

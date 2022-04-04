@@ -28,9 +28,10 @@ public class Main {
         binaryTree2.findMin(binaryTree2.root);
 
         System.out.println();
-        ArrayList<BinarySearchTreeNode> list = binaryTree2.inOrder();
-        for (BinarySearchTreeNode BSTN : list) {
-            System.out.print(BSTN.value + " ");
+        ArrayList<Integer> list = binaryTree2.inOrder();
+
+        for (Integer BSTN : list) {
+            System.out.print(BSTN + " ");
         }
         System.out.println();
         System.out.println("Min "+binaryTree2.findMin(binaryTree2.root));
@@ -45,17 +46,20 @@ public class Main {
         System.out.println();
         binaryTreePrint.printTree(binaryTree.root);
         System.out.println();
-        ArrayList<BinarySearchTreeNode> list2 = binaryTree.preOrder();
-        for (BinarySearchTreeNode BSTN : list2) {
-            System.out.print(BSTN.value + " ");
+        System.out.println(binaryTree2.height());
+        System.out.println("YOLO "+binaryTree2.contains(22));
+        System.out.println();
+        ArrayList<Integer> list2 = binaryTree.preOrder();
+        for (Integer BSTN : list2) {
+            System.out.print(BSTN + " ");
         }
-        ArrayList<BinarySearchTreeNode> list3 = binaryTree.inOrder();
-        for (BinarySearchTreeNode BSTN : list3) {
-            System.out.print(BSTN.value + " ");
+        ArrayList<Integer> list3 = binaryTree.inOrder();
+        for (Integer BSTN : list3) {
+            System.out.print(BSTN + " ");
         }
-        ArrayList<BinarySearchTreeNode> list4 = binaryTree.postOrder();
-        for (BinarySearchTreeNode BSTN : list4) {
-            System.out.print(BSTN.value + " ");
+        ArrayList<Integer> list4 = binaryTree.postOrder();
+        for (Integer BSTN : list4) {
+            System.out.print(BSTN + " ");
         }
     }
 }
