@@ -17,9 +17,11 @@ public class BTP   {
      */
 
     public void printTree(BinaryTreeNode root) {
+        System.out.println();
         ArrayList<BinaryTreeNode> parent = new ArrayList<BinaryTreeNode>();
         parent.add(root);
         printT(parent, 64);
+        System.out.println();
     }
 
     private void printT(ArrayList<BinaryTreeNode> parent, int left) {

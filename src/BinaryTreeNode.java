@@ -1,5 +1,5 @@
 public class BinaryTreeNode<T> {
-   T value;
+    T value;
     BinaryTreeNode<T> left;
     BinaryTreeNode<T> right;
 
@@ -22,10 +22,10 @@ public class BinaryTreeNode<T> {
     }
 
     public void addLeftChild(BinaryTreeNode<T> binaryTreeNode) {
-       this.left= binaryTreeNode;
+        this.left = binaryTreeNode;
     }
 
     public void addRightChild(BinaryTreeNode<T> binaryTreeNode) {
-        this.right= binaryTreeNode;
+        this.right = binaryTreeNode;
     }
 }
