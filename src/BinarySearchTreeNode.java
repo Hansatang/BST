@@ -25,7 +25,7 @@ public class BinarySearchTreeNode<T extends Comparable<T>> extends BinaryTreeNod
     }
 
     @Override
-    public int compareTo(T o) {
-        return getElement().compareTo(o);
+    public int compareTo(T something) {
+        return getElement().compareTo(something);
     }
 }

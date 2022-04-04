@@ -42,4 +42,25 @@ public class BinaryTree<T> {
 //    }
 
 
+    public boolean contains(T value){
+        return search((BinarySearchTreeNode) root, value);
+    }
+
+    private boolean search(BinarySearchTreeNode currentRoot, T searchedValue){
+        if (root == null)
+            return false;
+
+        switch (currentRoot.getElement().compareTo(searchedValue)){
+            case -1:
+                return search((BinarySearchTreeNode) root.getLeftChild(), searchedValue);
+            case 0:
+                    return true;
+            case 1:
+                return search((BinarySearchTreeNode) root.getRightChild(), searchedValue);
+        }
+        return false;
+    }
+
+
+
 }
