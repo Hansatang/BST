@@ -21,9 +21,9 @@ public class Main {
         binaryTree2.insert(17);
         binaryTree2.insert(11);
         binaryTreePrint.printTree(binaryTree2.root);
-        binaryTree2.delete(10);
+        binaryTree2.removeElement(10);
         binaryTreePrint.printTree(binaryTree2.root);
-        binaryTree2.delete(13);
+        binaryTree2.removeElement(13);
         binaryTreePrint.printTree(binaryTree2.root);
         binaryTree2.findMin(binaryTree2.root);
 

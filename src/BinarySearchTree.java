@@ -3,6 +3,15 @@ import java.util.ArrayList;
 public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
     BinarySearchTreeNode<T> root;
 
+    @Override
+    public void setRoot(BinaryTreeNode<T> node) {
+        this.root = new BinarySearchTreeNode<> (node.getElement());
+    }
+
+    @Override
+    public BinarySearchTreeNode<T> getRoot() {
+        return root;
+    }
 
     public boolean insert(T value) {
         BinarySearchTreeNode<T> current = root;
@@ -112,7 +121,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
     }
 
 
-    public boolean delete(T data) {
+    public boolean removeElement(T data) {
         return delete(root, data) != null;
     }
 
@@ -131,7 +140,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
             } else if (checkedNode.getRightChild() == null) {
                 return (BinarySearchTreeNode<T>) checkedNode.getLeftChild();
             }
-            checkedNode.setValue(findMin((BinarySearchTreeNode<T>) checkedNode.getRightChild()));
+            checkedNode.setElement(findMin((BinarySearchTreeNode<T>) checkedNode.getRightChild()));
             checkedNode.addRightChild(delete((BinarySearchTreeNode<T>) checkedNode.getRightChild(), (T) checkedNode.getElement()));
         }
         return checkedNode;
@@ -140,8 +149,6 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
     public T findMin(BinarySearchTreeNode<T> node) {
         T min = node.getElement();
-
-
         while (node.getLeftChild() != null) {
             min = node.getLeftChild().getElement();
             node = (BinarySearchTreeNode<T>) node.getLeftChild();
@@ -157,6 +164,56 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
             node = (BinarySearchTreeNode<T>) node.getRightChild();
         }
         return max;
+    }
+
+
+    public void rebalance()
+    {
+        BinarySearchTreeNode<T> temp,temp2;
+
+        if (getHeight(root.getLeftChild())-getHeight(root.getRightChild())>=1 || getHeight(root.getLeftChild())-getHeight(root.getRightChild())<=-1 )
+        {
+
+            if (getHeight(root.getLeftChild())>getHeight(root.getRightChild())) {
+                //left left
+                if (getHeight(root.getLeftChild().getLeftChild()) > getHeight(root.getRightChild().getRightChild())) {
+                    temp = (BinarySearchTreeNode<T>) root.left;
+                    root.left = temp.right;
+                    temp.right = root;
+
+                }
+
+                //left right
+                else if (getHeight(root.getLeftChild().getRightChild()) > getHeight(root.getRightChild().getLeftChild())) {
+                    temp = (BinarySearchTreeNode<T>) root.left;
+                    temp2 = (BinarySearchTreeNode<T>) root.left.right;
+                    root.left = temp2.right;
+                    temp.right = temp2.left;
+                    temp2.left = temp;
+                    temp2.right = root;
+                }
+            }
+            else if (getHeight(root.getLeftChild())<getHeight(root.getRightChild())) {
+                //right right
+                if (getHeight(root.getRightChild().getRightChild()) >getHeight(root.getRightChild().getLeftChild())) {
+                    temp = (BinarySearchTreeNode<T>) root.left;
+                    root.left = temp.right;
+                    temp.right = root;
+
+                }
+
+                //right left
+                else if (getHeight(root.getRightChild().getLeftChild()) > getHeight(root.getRightChild().getRightChild())) {
+                    temp = (BinarySearchTreeNode<T>) root.right;
+                    temp2 = (BinarySearchTreeNode<T>) root.right.left;
+                    root.right = temp2.left;
+                    temp.left = temp2.right;
+                    temp2.left = root;
+                    temp2.right = temp;
+                }
+            }
+
+        }
     }
 
     @Override
