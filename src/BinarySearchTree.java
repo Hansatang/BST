@@ -20,14 +20,14 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
             return true;
         }
         while (true) {
-            if (current.compareTo(value) == 1) {
+            if (current.compareTo(value) > 0) {
                 if (current.getLeftChild() == null) {
                     current.addLeftChild(new BinarySearchTreeNode<T>(value));
                     return true;
                 } else {
                     current = (BinarySearchTreeNode<T>) current.getLeftChild();
                 }
-            } else if (current.compareTo(value) == -1) {
+            } else if (current.compareTo(value) < 0) {
                 if (current.getRightChild() == null) {
                     current.addRightChild(new BinarySearchTreeNode<T>(value));
                     return true;
@@ -117,10 +117,10 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
             return;
         ArrayList<BinaryTreeNode<T>> newNodeList = new ArrayList<>();
         if (!nodeList.isEmpty()) {
-            for (BinaryTreeNode node : nodeList) {
+            for (BinaryTreeNode<T> node : nodeList) {
                 if (node != null) {
                     System.out.println("Adding element");
-                    inOrderList.add((T) node.getElement());
+                    inOrderList.add(node.getElement());
                     if (node.getLeftChild() != null) {
                         System.out.println("Adding left child for iteration");
                         newNodeList.add(node.getLeftChild());
@@ -146,10 +146,8 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
             return checkedNode;
         } else if (checkedNode.getElement().compareTo(data) > 0) {
             checkedNode.addLeftChild(delete((BinarySearchTreeNode<T>) checkedNode.getLeftChild(), data));
-//            checkedNode.left = delete((BinarySearchTreeNode<T>) checkedNode.getLeftChild(), data);
         } else if (checkedNode.getElement().compareTo(data) < 0) {
             checkedNode.addRightChild(delete((BinarySearchTreeNode<T>) checkedNode.getRightChild(), data));
-            // checkedNode.right = delete((BinarySearchTreeNode<T>) checkedNode.getRightChild(), data);
         } else {
             if (checkedNode.getLeftChild() == null) {
                 return (BinarySearchTreeNode<T>) checkedNode.getRightChild();
@@ -222,104 +220,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
         }
     }
 
-    int getBalance(BinarySearchTreeNode<T> node) {
-        return (node == null) ? 0 : getHeight(node.getRightChild()) - getHeight(node.getLeftChild());
-    }
 
-//    public void rebalancer() {
-//        balancer(root);
-//    }
-//
-//    BinarySearchTreeNode<T> balancer(BinarySearchTreeNode<T> node) {
-//
-//        int i = getBalance(node);
-//        System.out.println("hej "+node.getElement()+ " "+i);
-//        if (i > 1) {
-//            if (getHeight(node.getRightChild().getRightChild()) > getHeight(node.getLeftChild().getLeftChild())) {
-//                node = rotateLeft(node);
-//            } else {
-//                node.addRightChild(rotateRight((BinarySearchTreeNode<T>) node.getRightChild()));
-//                node = rotateLeft(node);
-//            }
-//        } else if (i < -1) {
-//            if (getHeight(node.getLeftChild().getLeftChild()) > getHeight(node.getRightChild().getRightChild())) {
-//                node = rotateRight(node);
-//            } else {
-//                node.addLeftChild(rotateLeft((BinarySearchTreeNode<T>) node.getLeftChild()));
-//                node = rotateRight(node);
-//            }
-//        }
-//        if (node.left != null){
-//            balancer((BinarySearchTreeNode<T>) node.left);
-//        }
-//        if (node.right != null){
-//            balancer((BinarySearchTreeNode<T>) node.right);
-//        }
-//        return node;
-//    }
-
-    BinarySearchTreeNode<T> rotateRight(BinarySearchTreeNode<T> y) {
-        BinarySearchTreeNode<T> x = (BinarySearchTreeNode<T>) y.left;
-        BinarySearchTreeNode<T> z = (BinarySearchTreeNode<T>) x.right;
-        x.right = y;
-        y.left = z;
-
-        return x;
-    }
-
-    BinarySearchTreeNode<T> rotateLeft(BinarySearchTreeNode<T> y) {
-        BinarySearchTreeNode<T> x = (BinarySearchTreeNode<T>) y.right;
-        BinarySearchTreeNode<T> z = (BinarySearchTreeNode<T>) x.left;
-        x.left = y;
-        y.right = z;
-        return x;
-    }
-
-//    public void rebalance() {
-//        BinarySearchTreeNode<T> temp, temp2;
-//
-//        if (getHeight(root.getLeftChild()) - getHeight(root.getRightChild()) >= 1 || getHeight(root.getLeftChild()) - getHeight(root.getRightChild()) <= -1) {
-//
-//            if (getHeight(root.getLeftChild()) > getHeight(root.getRightChild())) {
-//                //left left
-//                if (getHeight(root.getLeftChild().getLeftChild()) > getHeight(root.getRightChild().getRightChild())) {
-//                    temp = (BinarySearchTreeNode<T>) root.left;
-//                    root.left = temp.right;
-//                    temp.right = root;
-//
-//                }
-//
-//                //left right
-//                else if (getHeight(root.getLeftChild().getRightChild()) > getHeight(root.getRightChild().getLeftChild())) {
-//                    temp = (BinarySearchTreeNode<T>) root.left;
-//                    temp2 = (BinarySearchTreeNode<T>) root.left.right;
-//                    root.left = temp2.right;
-//                    temp.right = temp2.left;
-//                    temp2.left = temp;
-//                    temp2.right = root;
-//                }
-//            } else if (getHeight(root.getLeftChild()) < getHeight(root.getRightChild())) {
-//                //right right
-//                if (getHeight(root.getRightChild().getRightChild()) > getHeight(root.getRightChild().getLeftChild())) {
-//                    temp = (BinarySearchTreeNode<T>) root.left;
-//                    root.left = temp.right;
-//                    temp.right = root;
-//
-//                }
-//
-//                //right left
-//                else if (getHeight(root.getRightChild().getLeftChild()) > getHeight(root.getRightChild().getRightChild())) {
-//                    temp = (BinarySearchTreeNode<T>) root.right;
-//                    temp2 = (BinarySearchTreeNode<T>) root.right.left;
-//                    root.right = temp2.left;
-//                    temp.left = temp2.right;
-//                    temp2.left = root;
-//                    temp2.right = temp;
-//                }
-//            }
-//
-//        }
-//    }
 
     private BinarySearchTreeNode<T> rebalanceRecursive(ArrayList<T> nodes, int start, int end) {
         if (start > end)
