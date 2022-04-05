@@ -22,7 +22,7 @@ public class BinaryTree<T> {
         return inOrderList;
     }
 
-    public void toInOrder(BinaryTreeNode<T> root, ArrayList<T> nodes) {
+    private void toInOrder(BinaryTreeNode<T> root, ArrayList<T> nodes) {
         if (root == null)
             return;
         toInOrder(root.getLeftChild(), nodes);

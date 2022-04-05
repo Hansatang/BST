@@ -188,16 +188,16 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
         return search(root, value);
     }
 
-    private boolean search(BinarySearchTreeNode<T> currentRoot, T searchedValue) {
+    private boolean search(BinaryTreeNode<T> currentRoot, T searchedValue) {
         if (currentRoot == null)
             return false;
         switch (currentRoot.getElement().compareTo(searchedValue)) {
             case 1:
-                return search((BinarySearchTreeNode<T>) currentRoot.getLeftChild(), searchedValue);
+                return search(currentRoot.getLeftChild(), searchedValue);
             case 0:
                 return true;
             case -1:
-                return search((BinarySearchTreeNode<T>) currentRoot.getRightChild(), searchedValue);
+                return search(currentRoot.getRightChild(), searchedValue);
         }
         return false;
     }
