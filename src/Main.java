@@ -34,8 +34,8 @@ public class Main {
             System.out.print(BSTN + " ");
         }
         System.out.println();
-        System.out.println("Min "+binaryTree2.findMin(binaryTree2.root));
-        System.out.println("Max "+binaryTree2.findMax(binaryTree2.root));
+        System.out.println("Min " + binaryTree2.findMin(binaryTree2.root));
+        System.out.println("Max " + binaryTree2.findMax(binaryTree2.root));
 
         BinarySearchTree binaryTree = new BinarySearchTree();
         binaryTree.insert(4);
@@ -47,7 +47,7 @@ public class Main {
         binaryTreePrint.printTree(binaryTree.root);
         System.out.println();
         System.out.println(binaryTree2.height());
-        System.out.println("YOLO "+binaryTree2.contains(22));
+        System.out.println("YOLO " + binaryTree2.contains(22));
         System.out.println();
         ArrayList<Integer> list2 = binaryTree.preOrder();
         for (Integer BSTN : list2) {
@@ -69,5 +69,18 @@ public class Main {
         for (Integer BSTN : list5) {
             System.out.print(BSTN + " ");
         }
+        System.out.println();
+        BinarySearchTree binaryTree3 = new BinarySearchTree();
+        binaryTree3.insert(5);
+        binaryTree3.insert(10);
+        binaryTree3.insert(15);
+        binaryTree3.insert(20);
+        binaryTree3.insert(3);
+        binaryTree3.insert(8);
+        binaryTree3.insert(13);
+        binaryTree3.insert(25);
+        binaryTreePrint.printTree(binaryTree3.root);
+        binaryTree3.rebalance();
+        binaryTreePrint.printTree(binaryTree3.root);
     }
 }
