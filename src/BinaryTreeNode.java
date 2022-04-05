@@ -13,7 +13,7 @@ public class BinaryTreeNode<T> {
         return value;
     }
 
-    public void setValue(T value) {
+    public void setElement(T value) {
         this.value = value;
     }
 

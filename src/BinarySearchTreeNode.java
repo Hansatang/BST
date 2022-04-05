@@ -8,7 +8,7 @@ public class BinarySearchTreeNode<T extends Comparable<T>> extends BinaryTreeNod
         return value;
     }
 
-    public void setValue(T value) {
+    public void setElement(T value) {
         this.value = value;
     }
 

@@ -109,7 +109,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
             } else if (checkedNode.getRightChild() == null) {
                 return (BinarySearchTreeNode<T>) checkedNode.getLeftChild();
             }
-            checkedNode.setValue(findMin((BinarySearchTreeNode<T>) checkedNode.getRightChild()));
+            checkedNode.setElement(findMin((BinarySearchTreeNode<T>) checkedNode.getRightChild()));
             checkedNode.addRightChild(delete((BinarySearchTreeNode<T>) checkedNode.getRightChild(), (T) checkedNode.getElement()));
         }
         return checkedNode;

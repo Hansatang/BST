@@ -53,4 +53,10 @@ class BinarySearchTreeTest {
         binarySearchTree.insert(10);
         assertTrue(binarySearchTree.contains(10));
     }
+
+    @Test
+    void rebalance(){
+        //TODO make test for rebalance
+    }
+
 }
