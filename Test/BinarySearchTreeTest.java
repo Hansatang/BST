@@ -11,7 +11,6 @@ class BinarySearchTreeTest {
     @BeforeEach
     void setUp() {
         binarySearchTree = new BinarySearchTree();
-        binaryTreePrint = new BTP();
     }
 
     @Test
@@ -24,23 +23,34 @@ class BinarySearchTreeTest {
 
     @Test
     void removeElement() {
-        binarySearchTree.insert(2);
+        binarySearchTree.setRoot(new BinaryTreeNode(2));
         binarySearchTree.insert(10);
         assertTrue(binarySearchTree.contains(10));
         binarySearchTree.removeElement(10);
         assertFalse(binarySearchTree.contains(10));
-        //binaryTreePrint.printTree(binarySearchTree.getRoot());
     }
 
     @Test
     void findMin() {
+        binarySearchTree.setRoot(new BinaryTreeNode(2));
+        assertEquals(2, binarySearchTree.findMin(binarySearchTree.getRoot()));
+        binarySearchTree.insert(1);
+        assertEquals(1, binarySearchTree.findMin(binarySearchTree.getRoot()));
     }
 
     @Test
     void findMax() {
+        binarySearchTree.setRoot(new BinaryTreeNode(2));
+        assertEquals(2, binarySearchTree.findMax(binarySearchTree.getRoot()));
+        binarySearchTree.insert(3);
+        assertEquals(3, binarySearchTree.findMax(binarySearchTree.getRoot()));
     }
 
     @Test
     void contains() {
+        binarySearchTree.setRoot(new BinaryTreeNode(2));
+        assertFalse(binarySearchTree.contains(10));
+        binarySearchTree.insert(10);
+        assertTrue(binarySearchTree.contains(10));
     }
 }

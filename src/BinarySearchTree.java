@@ -3,6 +3,15 @@ import java.util.ArrayList;
 public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
     BinarySearchTreeNode<T> root;
 
+    @Override
+    public void setRoot(BinaryTreeNode<T> node) {
+        this.root = new BinarySearchTreeNode<> (node.getElement());
+    }
+
+    @Override
+    public BinarySearchTreeNode<T> getRoot() {
+        return root;
+    }
 
     public boolean insert(T value) {
         BinarySearchTreeNode<T> current = root;
@@ -81,7 +90,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
 
 
-    public boolean delete(T data) {
+    public boolean removeElement(T data) {
         return delete(root, data) != null;
     }
 
@@ -109,8 +118,6 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
     public T findMin(BinarySearchTreeNode<T> node) {
         T min = node.getElement();
-
-
         while (node.getLeftChild() != null) {
             min = node.getLeftChild().getElement();
             node = (BinarySearchTreeNode<T>) node.getLeftChild();
