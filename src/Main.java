@@ -71,14 +71,12 @@ public class Main {
         }
         System.out.println();
         BinarySearchTree binaryTree3 = new BinarySearchTree();
-        binaryTree3.insert(5);
         binaryTree3.insert(10);
-        binaryTree3.insert(15);
-        binaryTree3.insert(20);
-        binaryTree3.insert(3);
-        binaryTree3.insert(8);
+        binaryTree3.insert(7);
         binaryTree3.insert(13);
-        binaryTree3.insert(25);
+        binaryTree3.insert(15);
+        binaryTree3.insert(12);
+        binaryTree3.insert(11);
         binaryTreePrint.printTree(binaryTree3.root);
         binaryTree3.rebalance();
         binaryTreePrint.printTree(binaryTree3.root);

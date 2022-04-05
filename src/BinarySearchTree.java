@@ -225,7 +225,12 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
     private BinarySearchTreeNode<T> rebalanceRecursive(ArrayList<T> nodes, int start, int end) {
         if (start > end)
             return null;
-        int mid = (start + end) / 2;
+        int mid =  (start + end) >>> 1;
+        System.out.println(nodes.get(mid));
+        System.out.println("start "+ start );
+        System.out.println("end "+ end );
+        System.out.println("mid "+ mid );
+
         insert(nodes.get(mid));
         rebalanceRecursive(nodes, start, mid - 1);
         rebalanceRecursive(nodes, mid + 1, end);
