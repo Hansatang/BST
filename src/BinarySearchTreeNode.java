@@ -8,6 +8,10 @@ public class BinarySearchTreeNode<T extends Comparable<T>> extends BinaryTreeNod
         return value;
     }
 
+    public void setElement(T value) {
+        this.value = value;
+    }
+
     public BinaryTreeNode<T> getLeftChild() {
         return left;
     }

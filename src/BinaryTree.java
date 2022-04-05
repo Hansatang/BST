@@ -58,17 +58,42 @@ public class BinaryTree<T> {
         nodes.add(root.getElement());
     }
 
+    public ArrayList<T> levelOrder() {
+        ArrayList<T> inOrderList = new ArrayList();
+        ArrayList<BinaryTreeNode<T>> nodeList = new ArrayList<>();
+        nodeList.add(root);
+        toLevelOrder(nodeList, inOrderList);
+        return inOrderList;
+    }
+
+    private void toLevelOrder(ArrayList<BinaryTreeNode<T>> nodeList, ArrayList<T> inOrderList) {
+        if (root == null)
+            return;
+        ArrayList<BinaryTreeNode<T>> newNodeList = new ArrayList<>();
+        if (!nodeList.isEmpty()) {
+            for (BinaryTreeNode node : nodeList) {
+                if (node != null) {
+                    System.out.println("Adding element");
+                    inOrderList.add((T) node.getElement());
+                    if (node.getLeftChild() != null) {
+                        System.out.println("Adding left child for iteration");
+                        newNodeList.add(node.getLeftChild());
+                    }
+                    if (node.getRightChild() != null) {
+                        System.out.println("Adding right child for iteration");
+                        newNodeList.add(node.getRightChild());
+                    }
+                }
+            }
+            System.out.println(inOrderList.size());
+            toLevelOrder(newNodeList, inOrderList);
+        }
+    }
 
     public int size() {
         return inOrder().size();
     }
 
-//    public boolean contains(int value){
-//        if (root.getElement() == value) {
-//            root = new BinaryTreeNode(value);
-//            return true;
-//        }
-//    }
 
 
     public boolean contains(T value) {

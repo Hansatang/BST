@@ -3,6 +3,15 @@ import java.util.ArrayList;
 public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
     BinarySearchTreeNode<T> root;
 
+    @Override
+    public void setRoot(BinaryTreeNode<T> node) {
+        this.root = new BinarySearchTreeNode<> (node.getElement());
+    }
+
+    @Override
+    public BinarySearchTreeNode<T> getRoot() {
+        return root;
+    }
 
     public boolean insert(T value) {
         BinarySearchTreeNode<T> current = root;
@@ -12,14 +21,14 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
         }
         while (true) {
             if (current.compareTo(value) == 1) {
-                if (current.left == null) {
+                if (current.getLeftChild() == null) {
                     current.addLeftChild(new BinarySearchTreeNode<T>(value));
                     return true;
                 } else {
                     current = (BinarySearchTreeNode<T>) current.getLeftChild();
                 }
             } else if (current.compareTo(value) == -1) {
-                if (current.right == null) {
+                if (current.getRightChild() == null) {
                     current.addRightChild(new BinarySearchTreeNode<T>(value));
                     return true;
                 } else {
@@ -79,7 +88,9 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
     }
 
 
-    public boolean delete(T data) {
+
+
+    public boolean removeElement(T data) {
         return delete(root, data) != null;
     }
 
@@ -87,17 +98,19 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
         if (checkedNode == null) {
             return checkedNode;
         } else if (checkedNode.getElement().compareTo(data) > 0) {
-            checkedNode.left = delete((BinarySearchTreeNode<T>) checkedNode.getLeftChild(), data);
+            checkedNode.addLeftChild(delete((BinarySearchTreeNode<T>) checkedNode.getLeftChild(), data));
+//            checkedNode.left = delete((BinarySearchTreeNode<T>) checkedNode.getLeftChild(), data);
         } else if (checkedNode.getElement().compareTo(data) < 0) {
-            checkedNode.right = delete((BinarySearchTreeNode<T>) checkedNode.getRightChild(), data);
+            checkedNode.addRightChild(delete((BinarySearchTreeNode<T>) checkedNode.getRightChild(), data));
+            // checkedNode.right = delete((BinarySearchTreeNode<T>) checkedNode.getRightChild(), data);
         } else {
-            if (checkedNode.left == null) {
+            if (checkedNode.getLeftChild() == null) {
                 return (BinarySearchTreeNode<T>) checkedNode.getRightChild();
-            } else if (checkedNode.right == null) {
+            } else if (checkedNode.getRightChild() == null) {
                 return (BinarySearchTreeNode<T>) checkedNode.getLeftChild();
             }
-            checkedNode.value = findMin((BinarySearchTreeNode<T>) checkedNode.right);
-            checkedNode.right = delete((BinarySearchTreeNode<T>) checkedNode.right, (T) checkedNode.getElement());
+            checkedNode.setElement(findMin((BinarySearchTreeNode<T>) checkedNode.getRightChild()));
+            checkedNode.addRightChild(delete((BinarySearchTreeNode<T>) checkedNode.getRightChild(), (T) checkedNode.getElement()));
         }
         return checkedNode;
     }
@@ -105,8 +118,6 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
     public T findMin(BinarySearchTreeNode<T> node) {
         T min = node.getElement();
-
-
         while (node.getLeftChild() != null) {
             min = node.getLeftChild().getElement();
             node = (BinarySearchTreeNode<T>) node.getLeftChild();
@@ -194,18 +205,17 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
     }
 
     @Override
-    public int height(){
+    public int height() {
         return getHeight(root);
     }
 
 
-    public int getHeight(BinaryTreeNode<T> root)
-    {
+    public int getHeight(BinaryTreeNode<T> root) {
         if (root == null)
             return 0;
         else {
-            int lheight = getHeight(root.left);
-            int rheight = getHeight(root.right);
+            int lheight = getHeight(root.getLeftChild());
+            int rheight = getHeight(root.getRightChild());
 
             if (lheight > rheight)
                 return (lheight + 1);

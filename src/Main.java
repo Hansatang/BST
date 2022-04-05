@@ -21,9 +21,9 @@ public class Main {
         binaryTree2.insert(17);
         binaryTree2.insert(11);
         binaryTreePrint.printTree(binaryTree2.root);
-        binaryTree2.delete(10);
+        binaryTree2.removeElement(10);
         binaryTreePrint.printTree(binaryTree2.root);
-        binaryTree2.delete(13);
+        binaryTree2.removeElement(13);
         binaryTreePrint.printTree(binaryTree2.root);
         binaryTree2.findMin(binaryTree2.root);
 
@@ -53,12 +53,20 @@ public class Main {
         for (Integer BSTN : list2) {
             System.out.print(BSTN + " ");
         }
+        System.out.println();
         ArrayList<Integer> list3 = binaryTree.inOrder();
         for (Integer BSTN : list3) {
             System.out.print(BSTN + " ");
         }
+        System.out.println();
         ArrayList<Integer> list4 = binaryTree.postOrder();
         for (Integer BSTN : list4) {
+            System.out.print(BSTN + " ");
+        }
+        System.out.println();
+        System.out.println("LevelOrder");
+        ArrayList<Integer> list5 = binaryTree.levelOrder();
+        for (Integer BSTN : list5) {
             System.out.print(BSTN + " ");
         }
     }
