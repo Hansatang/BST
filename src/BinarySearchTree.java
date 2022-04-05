@@ -124,6 +124,56 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
         return max;
     }
 
+
+    public void rebalance()
+    {
+        BinarySearchTreeNode<T> temp,temp2;
+
+        if (getHeight(root.getLeftChild())-getHeight(root.getRightChild())>=1 || getHeight(root.getLeftChild())-getHeight(root.getRightChild())<=-1 )
+        {
+
+            if (getHeight(root.getLeftChild())>getHeight(root.getRightChild())) {
+                //left left
+                if (getHeight(root.getLeftChild().getLeftChild()) > getHeight(root.getRightChild().getRightChild())) {
+                    temp = (BinarySearchTreeNode<T>) root.left;
+                    root.left = temp.right;
+                    temp.right = root;
+
+                }
+
+                //left right
+                else if (getHeight(root.getLeftChild().getRightChild()) > getHeight(root.getRightChild().getLeftChild())) {
+                    temp = (BinarySearchTreeNode<T>) root.left;
+                    temp2 = (BinarySearchTreeNode<T>) root.left.right;
+                    root.left = temp2.right;
+                    temp.right = temp2.left;
+                    temp2.left = temp;
+                    temp2.right = root;
+                }
+            }
+            else if (getHeight(root.getLeftChild())<getHeight(root.getRightChild())) {
+                //right right
+                if (getHeight(root.getRightChild().getRightChild()) >getHeight(root.getRightChild().getLeftChild())) {
+                    temp = (BinarySearchTreeNode<T>) root.left;
+                    root.left = temp.right;
+                    temp.right = root;
+
+                }
+
+                //right left
+                else if (getHeight(root.getRightChild().getLeftChild()) > getHeight(root.getRightChild().getRightChild())) {
+                    temp = (BinarySearchTreeNode<T>) root.right;
+                    temp2 = (BinarySearchTreeNode<T>) root.right.left;
+                    root.right = temp2.left;
+                    temp.left = temp2.right;
+                    temp2.left = root;
+                    temp2.right = temp;
+                }
+            }
+
+        }
+    }
+
     @Override
     public boolean contains(T value) {
         return search(root, value);
