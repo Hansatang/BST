@@ -14,6 +14,7 @@ class BinaryTreeNodeTest {
 
     @Test
     void getElement() {
+        assertNull(binaryTree.getRoot());
         assertThrows(NullPointerException.class, ()-> {
             assertEquals(binaryTree.getRoot().getElement(),null);
         });
@@ -23,6 +24,10 @@ class BinaryTreeNodeTest {
 
     @Test
     void setElement() {
+        assertNull(binaryTree.getRoot());
+        assertThrows(NullPointerException.class, () -> {
+           binaryTree.getRoot().setElement(null);
+        });
         binaryTree.setRoot(new BinaryTreeNode(7));
         assertEquals(binaryTree.getRoot().getElement(), 7);
         binaryTree.getRoot().setElement(2);
@@ -31,6 +36,7 @@ class BinaryTreeNodeTest {
 
     @Test
     void getLeftChild() {
+        assertNull(binaryTree.getRoot());
         binaryTree.root = new BinaryTreeNode(7);
         assertNull(binaryTree.getRoot().getLeftChild());
         binaryTree.getRoot().left = new BinaryTreeNode(2);
@@ -39,6 +45,7 @@ class BinaryTreeNodeTest {
 
     @Test
     void getRightChild() {
+        assertNull(binaryTree.getRoot());
         binaryTree.root = new BinaryTreeNode(7);
         assertNull(binaryTree.getRoot().getRightChild());
         binaryTree.getRoot().right = new BinaryTreeNode(14);
@@ -47,6 +54,7 @@ class BinaryTreeNodeTest {
 
     @Test
     void addLeftChild() {
+        assertNull(binaryTree.getRoot());
         binaryTree.root = new BinaryTreeNode(7);
         assertNull(binaryTree.getRoot().getLeftChild());
         binaryTree.getRoot().addLeftChild(new BinaryTreeNode(2));
@@ -55,6 +63,7 @@ class BinaryTreeNodeTest {
 
     @Test
     void addRightChild() {
+        assertNull(binaryTree.getRoot());
         binaryTree.root = new BinaryTreeNode(2);
         assertNull(binaryTree.getRoot().getRightChild());
         binaryTree.getRoot().addRightChild(new BinaryTreeNode(7));
