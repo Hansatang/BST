@@ -79,17 +79,17 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
     }
 
 
-    public boolean delete(T data) {
-        return delete(root, data) != null;
+    public boolean removeElement(T data) {
+        return removeElement(root, data) != null;
     }
 
-    private BinarySearchTreeNode<T> delete(BinarySearchTreeNode<T> checkedNode, T data) {
+    private BinarySearchTreeNode<T> removeElement(BinarySearchTreeNode<T> checkedNode, T data) {
         if (checkedNode == null) {
             return checkedNode;
         } else if (checkedNode.getElement().compareTo(data) > 0) {
-            checkedNode.left = delete((BinarySearchTreeNode<T>) checkedNode.getLeftChild(), data);
+            checkedNode.left = removeElement((BinarySearchTreeNode<T>) checkedNode.getLeftChild(), data);
         } else if (checkedNode.getElement().compareTo(data) < 0) {
-            checkedNode.right = delete((BinarySearchTreeNode<T>) checkedNode.getRightChild(), data);
+            checkedNode.right = removeElement((BinarySearchTreeNode<T>) checkedNode.getRightChild(), data);
         } else {
             if (checkedNode.left == null) {
                 return (BinarySearchTreeNode<T>) checkedNode.getRightChild();
@@ -97,7 +97,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
                 return (BinarySearchTreeNode<T>) checkedNode.getLeftChild();
             }
             checkedNode.value = findMin((BinarySearchTreeNode<T>) checkedNode.right);
-            checkedNode.right = delete((BinarySearchTreeNode<T>) checkedNode.right, (T) checkedNode.getElement());
+            checkedNode.right = removeElement((BinarySearchTreeNode<T>) checkedNode.right, (T) checkedNode.getElement());
         }
         return checkedNode;
     }
