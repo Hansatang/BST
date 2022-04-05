@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class BinarySearchTreeTest {
 
     private BinarySearchTree binarySearchTree;
-    private BTP binaryTreePrint;
 
     @BeforeEach
     void setUp() {
@@ -40,6 +39,7 @@ class BinarySearchTreeTest {
 
     @Test
     void findMax() {
+
         binarySearchTree.setRoot(new BinaryTreeNode(2));
         assertEquals(2, binarySearchTree.findMax(binarySearchTree.getRoot()));
         binarySearchTree.insert(3);
@@ -48,6 +48,7 @@ class BinarySearchTreeTest {
 
     @Test
     void contains() {
+        assertNull(binarySearchTree.getRoot());
         binarySearchTree.setRoot(new BinaryTreeNode(2));
         assertFalse(binarySearchTree.contains(10));
         binarySearchTree.insert(10);
